@@ -1,13 +1,234 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Floricultura</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Resetando margens e paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Corpo da página */
+        body {
+            background-color: #f9f9f9;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Cabeçalho */
+        #header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #FFA726;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* Botão do Menu */
+        #menu-btn {
+            background-color: #FF9800;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        #menu-btn:hover {
+            background-color: #FB8C00;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #FFB74D;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            padding-top: 60px;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            border-bottom: 1px solid #FFCC80;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #FF9800;
+        }
+
+        .sidebar ul ul {
+            display: none;
+            background-color: #FFE0B2;
+        }
+
+        .sidebar ul li:hover ul {
+            display: block;
+        }
+
+        .sidebar ul ul li a {
+            padding-left: 40px;
+            font-size: 14px;
+        }
+
+        /* Seção de pesquisa */
+        #seacher-bar {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #seacher-bar input {
+            padding: 10px;
+            width: 80%;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        #seacher-bar input:focus {
+            border-color: #FF9800;
+        }
+
+        /* Ícone do usuário */
+        #icon {
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        #icon i {
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        #icon:hover i {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            #header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: fixed;
+                left: -100%;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            #seacher-bar input {
+                width: 100%;
+            }
+        }
+
+        /* Botão de Fechar */
+        #close-btn {
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            transition: color 0.3s;
+        }
+
+        #close-btn:hover {
+            color: #FFE0B2;
+        }
+    </style>
 </head>
+
 <body>
-    <div>
+
+    <header id="header">
+        <button id="menu-btn">☰ Menu</button>
         
-    </div>
+
+
+        <nav id="mySidebar" class="sidebar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li>
+                    <a href="#locais">Floricultura perto de mim</a>
+                    <ul>
+                        <li><a href="osasco">Osasco</a></li>
+                        <li><a href="carapicuiba">Carapicuíba</a></li>
+                        <li><a href="barueri">Barueri</a></li>
+                    </ul>
+                </li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <button id="close-btn">×</button>
+        </nav>
+
+
+        <div id="seacher-bar">
+            <input type="text" placeholder="Pesquisar...">
+        </div>
+
+        <div id="icon">
+            <i class="fas fa-user"></i>
+        </div>
+    </header>
+
+
+    <script>
+    // Botão de abrir
+    document.getElementById('menu-btn').addEventListener('click', function() {
+        document.getElementById('mySidebar').classList.toggle('active');
+    });
+
+    // Botão de fechar
+    document.getElementById('close-btn').addEventListener('click', function() {
+        document.getElementById('mySidebar').classList.remove('active');
+    });
+</script>
+
+
 </body>
+
 </html>
